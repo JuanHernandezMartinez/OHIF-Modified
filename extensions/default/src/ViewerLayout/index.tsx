@@ -104,13 +104,13 @@ function ViewerLayout({
   const rightPanelComponents = rightPanels.map(getPanelData);
   const viewportComponents = viewports.map(getViewportComponentData);
 
-  const mql=window.matchMedia("(min-width:1024px)")
-  let MobileVewi=mql.matches
-  let vh=""
-  if(MobileVewi){
-    vh="100vh"
-  }else{
-    vh="60vh"
+  const mql = window.matchMedia('(min-width:1024px)');
+  let MobileVewi = mql.matches;
+  let vh = '';
+  if (MobileVewi) {
+    vh = '100vh';
+  } else {
+    vh = '60vh';
   }
 
   return (
@@ -125,7 +125,7 @@ function ViewerLayout({
         style={{ height: `calc(${vh} - 52px` }}
       >
         <React.Fragment>
-        {leftPanelComponents.length && MobileVewi ? (
+          {leftPanelComponents.length && MobileVewi ? (
             <ErrorBoundary context="Left Panel">
               <SidePanelWithServices
                 side="left"
@@ -152,7 +152,7 @@ function ViewerLayout({
               </ErrorBoundary>
             </div>
           </div>
-          {rightPanelComponents.length ? (
+          {/* {rightPanelComponents.length ? (
             <ErrorBoundary context="Right Panel">
               <SidePanelWithServices
                 side="right"
@@ -161,22 +161,21 @@ function ViewerLayout({
                 servicesManager={servicesManager}
               />
             </ErrorBoundary>
-          ) : null}
+          ) : null} */}
         </React.Fragment>
-
       </div>
       <React.Fragment>
         {leftPanelComponents.length && !MobileVewi ? (
-            <ErrorBoundary context="Left Panel">
-              <SidePanelWithServices
-                side="left"
-                activeTabIndex={leftPanelDefaultClosed ? null : 0}
-                tabs={leftPanelComponents}
-                servicesManager={servicesManager}
-              />
-            </ErrorBoundary>
-          ) : null}
-        </React.Fragment>
+          <ErrorBoundary context="Left Panel">
+            <SidePanelWithServices
+              side="left"
+              activeTabIndex={leftPanelDefaultClosed ? null : 0}
+              tabs={leftPanelComponents}
+              servicesManager={servicesManager}
+            />
+          </ErrorBoundary>
+        ) : null}
+      </React.Fragment>
     </div>
   );
 }
