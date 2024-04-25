@@ -146,7 +146,6 @@ class MeasurementService extends PubSubService {
 
     // check if valuetype is valid , and if values are strings
     if (!valueType || typeof valueType !== 'object') {
-      console.warn(`MeasurementService: addValueType: invalid valueType: ${valueType}`);
       return;
     }
 
@@ -237,7 +236,6 @@ class MeasurementService extends PubSubService {
       return this.getAnnotation(source, annotationType, measurementId);
     };
 
-    log.info(`New '${name}@${version}' source added.`);
     this.sources[uid] = source;
 
     return source;
@@ -300,8 +298,6 @@ class MeasurementService extends PubSubService {
     } else {
       this.mappings[source.uid] = [mapping];
     }
-
-    log.info(`New measurement mapping added to source '${this._getSourceToString(source)}'.`);
   }
 
   /**
@@ -333,7 +329,6 @@ class MeasurementService extends PubSubService {
     const matchingMapping = this._getMatchingMapping(source, annotationType, measurement);
 
     if (matchingMapping) {
-      log.info('Matching mapping found:', matchingMapping);
       const { toAnnotationSchema, annotationType } = matchingMapping;
       return toAnnotationSchema(measurement, annotationType);
     }
@@ -348,8 +343,6 @@ class MeasurementService extends PubSubService {
       ...measurement,
       modifiedTimestamp: Math.floor(Date.now() / 1000),
     };
-
-    log.info(`Updating internal measurement representation...`, updatedMeasurement);
 
     this.measurements.set(measurementUID, updatedMeasurement);
 
@@ -432,7 +425,6 @@ class MeasurementService extends PubSubService {
         measurement: newMeasurement,
       });
     } else {
-      log.info('Measurement added', newMeasurement);
       this.measurements.set(internalUID, newMeasurement);
       this._broadcastEvent(this.EVENTS.RAW_MEASUREMENT_ADDED, {
         source,
@@ -475,7 +467,6 @@ class MeasurementService extends PubSubService {
         mapping => mapping.annotationType === annotationType
       );
       if (!sourceMapping) {
-        console.log('No source mapping', source);
         return;
       }
       const { toMeasurementSchema } = sourceMapping;
@@ -486,7 +477,6 @@ class MeasurementService extends PubSubService {
     } catch (error) {
       this.unmappedMeasurements.add(sourceAnnotationDetail.uid);
 
-      console.log('Failed to map', error);
       throw new Error(
         `Failed to map '${sourceInfo}' measurement for annotationType ${annotationType}: ${error.message}`
       );
@@ -502,9 +492,6 @@ class MeasurementService extends PubSubService {
     let internalUID = sourceAnnotationDetail.uid;
     if (!internalUID) {
       internalUID = guid();
-      log.info(
-        `Annotation does not have UID, Generating UID for the created Measurement: ${internalUID}`
-      );
     }
 
     const oldMeasurement = this.measurements.get(internalUID);
@@ -527,14 +514,12 @@ class MeasurementService extends PubSubService {
           notYetUpdatedAtSource: false,
         });
       } else {
-        log.info('Measurement added.', newMeasurement);
         this._broadcastEvent(this.EVENTS.MEASUREMENT_ADDED, {
           source,
           measurement: newMeasurement,
         });
       }
     } else {
-      log.info('Measurement started.', newMeasurement);
       this.measurements.set(internalUID, newMeasurement);
     }
 

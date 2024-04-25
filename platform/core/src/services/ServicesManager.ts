@@ -19,19 +19,14 @@ export default class ServicesManager {
    */
   registerService(service, configuration = {}) {
     if (!service) {
-      log.warn('Attempting to register a null/undefined service. Exiting early.');
       return;
     }
 
     if (!service.name) {
-      log.warn(`Service name not set. Exiting early.`);
       return;
     }
 
     if (this.registeredServiceNames.includes(service.name)) {
-      log.warn(
-        `Service name ${service.name} has already been registered. Exiting before duplicating services.`
-      );
       return;
     }
 
@@ -42,11 +37,9 @@ export default class ServicesManager {
         servicesManager: this,
       });
       if (service.altName) {
-        console.log('Registering old name', service.altName);
         this.services[service.altName] = this.services[service.name];
       }
     } else {
-      log.warn(`Service create factory function not defined. Exiting early.`);
       return;
     }
 

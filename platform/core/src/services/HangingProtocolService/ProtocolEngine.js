@@ -42,8 +42,6 @@ export default class ProtocolEngine {
     // Retrieve the highest scoring Protocol
     const bestMatch = this._getHighestScoringProtocol();
 
-    console.log('ProtocolEngine::getBestProtocolMatch bestMatch', bestMatch);
-
     return bestMatch;
   }
 
@@ -51,8 +49,6 @@ export default class ProtocolEngine {
    * Populates the MatchedProtocols Collection by running the matching procedure
    */
   updateProtocolMatches() {
-    console.log('ProtocolEngine::updateProtocolMatches');
-
     // Clear all data currently in matchedProtocols
     this._clearMatchedProtocols();
 
@@ -71,10 +67,6 @@ export default class ProtocolEngine {
 
       // If it is not already in the MatchedProtocols Collection, insert it with its score
       if (!this.matchedProtocols.has(protocol.id)) {
-        console.log(
-          'ProtocolEngine::updateProtocolMatches inserting protocol match',
-          matchedDetail
-        );
         this.matchedProtocols.set(protocol.id, protocol);
         this.matchedProtocolScores[protocol.id] = matchedDetail.score;
       }
@@ -113,10 +105,6 @@ export default class ProtocolEngine {
       // numberOfPriorsReferenced rule to the Protocol itself.
       let rules = protocol.protocolMatchingRules.slice();
       if (!rules || !rules.length) {
-        console.warn(
-          'ProtocolEngine::findMatchByStudy no matching rules - specify protocolMatchingRules for',
-          protocol.id
-        );
         return;
       }
 
@@ -138,7 +126,6 @@ export default class ProtocolEngine {
     if (!matched.length) {
       const protocol =
         this.protocols.find(protocol => protocol.id === 'default') ?? this.protocols[0];
-      console.log('No protocol matches, defaulting to', protocol);
       return [
         {
           score: 0,
@@ -149,8 +136,6 @@ export default class ProtocolEngine {
 
     // Sort the matched list by score
     sortByScore(matched);
-
-    console.log('ProtocolEngine::findMatchByStudy matched', matched);
 
     return matched;
   }

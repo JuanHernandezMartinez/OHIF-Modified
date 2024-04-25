@@ -33,7 +33,6 @@ function ViewerViewportGrid(props) {
     const availableDisplaySets = displaySetService.getActiveDisplaySets();
 
     if (!availableDisplaySets.length) {
-      console.log('No available display sets', availableDisplaySets);
       return;
     }
 
@@ -51,7 +50,6 @@ function ViewerViewportGrid(props) {
       const viewportId = Array.from(viewportMatchDetails.keys())[pos];
       const details = viewportMatchDetails.get(viewportId);
       if (!details) {
-        console.log('No match details for viewport', viewportId);
         return;
       }
 
@@ -379,7 +377,6 @@ function _getViewportComponent(displaySets, viewportComponents, uiNotificationSe
     }
   }
 
-  console.log("Can't show displaySet", SOPClassHandlerId, displaySets[0]);
   uiNotificationService.show({
     title: 'Viewport Not Supported Yet',
     message: `Cannot display SOPClassUID of ${displaySets[0].SOPClassUID} yet`,

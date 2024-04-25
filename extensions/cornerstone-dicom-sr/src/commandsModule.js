@@ -76,10 +76,8 @@ const commandsModule = ({}) => {
     }) => {
       // Use the @cornerstonejs adapter for converting to/from DICOM
       // But it is good enough for now whilst we only have cornerstone as a datasource.
-      log.info('[DICOMSR] storeMeasurements');
 
       if (!dataSource || !dataSource.store || !dataSource.store.dicom) {
-        log.error('[DICOMSR] datasource has no dataSource.store.dicom endpoint!');
         return Promise.reject({});
       }
 
@@ -108,8 +106,6 @@ const commandsModule = ({}) => {
 
         return naturalizedReport;
       } catch (error) {
-        console.warn(error);
-        log.error(`[DICOMSR] Error while saving the measurements: ${error.message}`);
         throw new Error(error.message || 'Error while saving the measurements.');
       }
     },

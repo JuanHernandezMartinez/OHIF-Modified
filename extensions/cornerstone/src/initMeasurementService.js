@@ -242,7 +242,6 @@ const connectToolsToMeasurementService = servicesManager => {
         const measurement = measurementService.getMeasurement(annotationUID);
 
         if (measurement) {
-          console.log('~~ removeEvt', csToolsEvent);
           remove(annotationUID, annotationRemovedEventDetail);
         }
       } catch (error) {

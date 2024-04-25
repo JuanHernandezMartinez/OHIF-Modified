@@ -9,9 +9,7 @@ const processFile = async file => {
     const dicomJSONDataset = await fileLoaderService.getDataset(image, imageId);
 
     DicomMetadataStore.addInstance(dicomJSONDataset);
-  } catch (error) {
-    console.log(error.name, ':Error when trying to load and process local files:', error.message);
-  }
+  } catch (error) {}
 };
 
 export default async function filesToStudies(files) {

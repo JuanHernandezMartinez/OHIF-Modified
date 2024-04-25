@@ -29,7 +29,6 @@ export function createStoryMetaSettings({ component, enumPropNamesArray, iconPro
   });
 
   if (component === Avatar) {
-    console.log(argTypes);
   }
 
   // set icon allowed values inside argsTypes object

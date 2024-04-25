@@ -56,7 +56,6 @@ function _getPaletteColor(paletteColorLookupTableData, lutDescriptor) {
       );
       return (paletteColorLookupTableData.palette = arrayBufferToPaletteColorLUT(arraybuffer));
     } catch (e) {
-      console.log("Couldn't decode", paletteColorLookupTableData.InlineBinary, e);
       return undefined;
     }
   }
