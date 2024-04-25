@@ -9,8 +9,6 @@ import Icon from '../Icon';
 import IconButton from '../IconButton';
 import Dropdown from '../Dropdown';
 
-
-
 function Header({
   children,
   menuOptions,
@@ -49,13 +47,11 @@ function Header({
             {isReturnEnabled && (
               <Icon
                 name="chevron-left"
-                className="text-primary-active w-8"
+                className="text-primary-active w-4"
               />
             )}
             <div className="ml-4">
-
-             {/* {WhiteLabeling?.createLogoComponentFn?.(React, props) || <Svg name="logo-ohif" />} */}
-
+              {/* {WhiteLabeling?.createLogoComponentFn?.(React, props) || <Svg name="logo-ohif" />} */}
             </div>
           </div>
         </div>

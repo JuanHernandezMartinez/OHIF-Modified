@@ -6,7 +6,7 @@ import { ServicesManager, HangingProtocolService, CommandsManager } from '@ohif/
 import { useAppConfig } from '@state';
 import ViewerHeader from './ViewerHeader';
 import SidePanelWithServices from '../Components/SidePanelWithServices';
-
+import Mensaje from './mensaje';
 function ViewerLayout({
   // From Extension Module Params
   extensionManager,
@@ -115,13 +115,14 @@ function ViewerLayout({
 
   return (
     <div>
+      <Mensaje />
       <ViewerHeader
         hotkeysManager={hotkeysManager}
         extensionManager={extensionManager}
         servicesManager={servicesManager}
       />
       <div
-        className="relative flex w-full flex-row flex-nowrap items-stretch overflow-hidden bg-black"
+        className="relative flex w-screen flex-row flex-nowrap items-stretch overflow-hidden bg-black"
         style={{ height: `calc(${vh} - 52px` }}
       >
         <React.Fragment>

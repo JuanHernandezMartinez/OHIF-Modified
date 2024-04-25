@@ -87,7 +87,7 @@ const iconSizeClasses = {
   small: 'w-4 h-4',
   medium: 'w-5 h-5',
   large: 'w-6 h-6',
-  toolbar: 'w-5 h-5',
+  toolbar: 'w-3 h-3',
 };
 
 const fullWidthClasses = {
@@ -133,7 +133,7 @@ const IconButton = ({
         className
       )}
       style={{
-        padding: size === 'toolbar' ? '10px' : null,
+        padding: size === 'toolbar' ? '3px' : null,
       }}
       ref={buttonElement}
       onClick={handleOnClick}
