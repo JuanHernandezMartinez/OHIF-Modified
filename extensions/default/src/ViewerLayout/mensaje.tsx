@@ -7,6 +7,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -37,6 +39,10 @@ function Mensaje() {
     setOpen(false);
   };
 
+  const handleExit = () => {
+    window.location.href = 'https://blog.diagnocons.com';
+  };
+
   useEffect(() => {
     console.log(MobileVewi);
     if (!MobileVewi) {
@@ -53,15 +59,21 @@ function Mensaje() {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{'Aviso!!!'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            La visualizacion de este estudio requiere de una pantalla que debe cumplir requisitos
-            medicos, ¿Desea continuar?
+            <Stack
+              sx={{ width: '100%' }}
+              spacing={2}
+            >
+              <Alert severity="warning">
+                Las imágenes de este estudio recomendamos sean vistas en una computadora para no
+                perder su alta calidad..
+              </Alert>
+            </Stack>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Salir</Button>
+          <Button onClick={handleExit}>Salir</Button>
           <Button onClick={handleClose}>Continuar</Button>
         </DialogActions>
       </Dialog>

@@ -67,7 +67,7 @@ function Header({
               id={'options-settings-icon'}
               variant="text"
               color="inherit"
-              size="initial"
+              size="small"
               className="text-primary-active"
             >
               <Icon name="settings" />
@@ -76,7 +76,7 @@ function Header({
               id={'options-chevron-down-icon'}
               variant="text"
               color="inherit"
-              size="initial"
+              size="small"
               className="text-primary-active"
             >
               <Icon name="chevron-down" />

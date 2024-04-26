@@ -2,6 +2,9 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+const mql = window.matchMedia('(min-width:1024px)');
+let MobileVewi = mql.matches;
+
 const baseClasses =
   'text-center items-center justify-center transition duration-300 ease-in-out outline-none font-bold focus:outline-none';
 
@@ -84,10 +87,10 @@ const sizeClasses = {
 };
 
 const iconSizeClasses = {
-  small: 'w-4 h-4',
-  medium: 'w-5 h-5',
-  large: 'w-6 h-6',
-  toolbar: 'w-3 h-3',
+  small: 'w-3 h-3',
+  medium: 'w-3 h-3',
+  large: 'w-3 h-3',
+  toolbar: MobileVewi ? 'w-5 h-5' : 'w-2 h-2',
 };
 
 const fullWidthClasses = {
@@ -133,7 +136,7 @@ const IconButton = ({
         className
       )}
       style={{
-        padding: size === 'toolbar' ? '3px' : null,
+        padding: size === 'toolbar' ? (MobileVewi ? '10px' : '5px') : null,
       }}
       ref={buttonElement}
       onClick={handleOnClick}
