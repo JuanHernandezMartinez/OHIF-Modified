@@ -66,8 +66,8 @@ function Mensaje() {
               spacing={2}
             >
               <Alert severity="warning">
-                Las imágenes de este estudio recomendamos sean vistas en una computadora para no
-                perder su alta calidad..
+                Recomendamos que las imágenes de este estudio se vean en una computadora para no
+                perder su alta calidad.
               </Alert>
             </Stack>
           </DialogContentText>
